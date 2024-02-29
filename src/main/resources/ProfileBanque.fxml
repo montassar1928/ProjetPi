@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileBanque">
+    <left>
+        <fx:include source="MenuBanque.fxml" />
+    </left>
+    <center>
+        <AnchorPane prefHeight="677.0" prefWidth="686.0">
+
+            <Text fx:id="labelName" layoutX="526.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="aaa" wrappingWidth="91.0" AnchorPane.leftAnchor="526.0" AnchorPane.topAnchor="135.0" />
+
+            <Text fill="#003788" layoutX="69.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BIAT" AnchorPane.leftAnchor="69.0" AnchorPane.topAnchor="39.0">
+            <font>
+               <Font size="48.0" />
+            </font></Text>
+            <ImageView fx:id="imageProfile" fitHeight="109.0" fitWidth="148.0" layoutX="497.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@/images/communiquenouveaulogo.jpg" />
+            </image></ImageView>
+            <Button fx:id="Changepass" layoutX="446.0" layoutY="391.0" mnemonicParsing="false" onAction="#openChangePasswordPopup" prefHeight="25.0" prefWidth="125.0" text="Change Password" />
+            <Button fx:id="Deleteid" layoutX="444.0" layoutY="452.0" mnemonicParsing="false" onAction="#openDeletePoopup" prefHeight="25.0" prefWidth="125.0" text="Delete Account" />
+            <Label fx:id="telephoneID" layoutX="90.0" layoutY="166.0" text="telephone" />
+            <Label fx:id="EmailID" layoutX="90.0" layoutY="211.0" text="EMAIL" />
+            <Label fx:id="Birthid" layoutX="90.0" layoutY="256.0" text="dateDeNaissance" />
+            <Label fx:id="creationID" layoutX="90.0" layoutY="300.0" text="DateCreation" />
+        </AnchorPane>
+    </center>
+</BorderPane>

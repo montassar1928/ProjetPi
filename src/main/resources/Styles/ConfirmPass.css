@@ -1,0 +1,63 @@
+.root {
+    -fx-font-family: 'Helvetica', 'Arial', sans-serif;
+}
+
+.lock-icon {
+    -fx-fill: #003788;
+}
+
+.title-text {
+    -fx-font-size: 28px;
+    -fx-fill: #003788;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.25), 3, 0, 0, 1);
+}
+
+
+
+.button {
+    -fx-background-color: #003788;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+}
+
+.button-back {
+    -fx-background-color: transparent;
+    -fx-text-fill: #003788;
+    -fx-underline: true;
+    -fx-padding: 10 20;
+}
+
+.button:hover, .button-back:hover {
+    -fx-opacity: 0.8;
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    -fx-background-color: #02569B; /* A slightly darker shade for the hover state */
+}
+
+.button-back:hover {
+    -fx-text-fill: #02569B; /* A slightly darker shade for the hover state */
+    -fx-cursor: hand; /* Change cursor to hand when hovering over the button */
+}
+
+/* Focused state for text fields */
+.text-field:focused {
+    -fx-border-color: #02569B; /* A slightly darker shade to highlight focus */
+}
+
+/* Padding inside the VBox container */
+.vbox {
+    -fx-spacing: 15; /* Space between children */
+    -fx-alignment: center; /* Align children to the center */
+}
+
+/* ScrollPane styling */
+.scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+

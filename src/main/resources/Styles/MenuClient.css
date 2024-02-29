@@ -1,0 +1,108 @@
+.main_menu_container {
+    -fx-background-color: #FFFFFF;
+    -fx-alignment: center;
+}
+
+.main_menu_container .title { /* Style ajouté pour le titre */
+    -fx-font-size: 2em;
+    -fx-text-fill: #003788;
+    -fx-font-weight: bold;
+}
+
+.left_container {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(two-pass-box, #AAAAAA, 5, 0, 0, 4);
+}
+
+.title_container {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 20 20 0 0;
+    -fx-alignment: top-center;
+    -fx-padding: 10;
+}
+
+.title_container FontAwesomeIconView {
+    -fx-fill: #131A13;
+}
+.title_container Text {
+    -fx-fill: #ffffff;
+    -fx-font-size: 2em;
+}
+
+/* Navigation Section */
+.menu_container {
+    -fx-padding: 10 10 10 20;
+    -fx-spacing: 20;
+    -fx-background-color: #FFFFFF;
+
+}
+
+.menu_container Button {
+    -fx-pref-width: 115;
+    -fx-pref-height: 40;
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #131A13;
+    -fx-font-size: 1.1em;
+    -fx-alignment: center-left;
+    -fx-effect: dropshadow(three-pass-box, #DDDDDD, 5, 0, 0, 6);
+}
+
+.menu_container Button:hover {
+    -fx-cursor: hand;
+}
+
+.menu_container Button FontAwesomeIconView {
+    -fx-fill: #132A13;
+}
+
+.alt_menu_btn {
+    -fx-pref-width: 115;
+    -fx-pref-height: 40;
+    -fx-background-color: #003788; /* Couleur changée ici */
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 1.1em;
+    -fx-alignment: center_left;
+}
+
+.alt_menu_btn FontAwesomeIconView {
+    -fx-fill: #FFFFFF;
+}
+
+/* Report Bug/Suggestion */
+.report_container {
+    -fx-background-color: #EFFFFE;
+    -fx-background-radius: 10;
+    -fx-alignment: center;
+    -fx-spacing: 10;
+    -fx-padding: 10 0 10 0;
+}
+
+.report_container Text {
+    -fx-font-weight: bold;
+    -fx-fill: #132A13;
+}
+
+.report_container Label {
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+}
+
+.report_container Button {
+    -fx-pref-width: 80;
+    -fx-background-color: #003788; /* Couleur changée ici */
+    -fx-text-fill: #FFFFFF; /* Assurez-vous que le texte est lisible avec le nouveau fond */
+    -fx-font-size: 1.1em;
+    -fx-effect: dropshadow(three-pass-box, #DDDDDD, 5, 0, 0, 6);
+    -fx-padding: 5; /* Ajouté pour le design */
+    -fx-background-radius: 5; /* Ajouté pour le design */
+}
+
+.report_container Button:hover {
+    -fx-cursor: hand;
+    -fx-background-color: #0055aa; /* Assombrissement lors du survol */
+}
+
+.report_container Button FontAwesomeIconView {
+    -fx-fill: #FFFFFF;
+}

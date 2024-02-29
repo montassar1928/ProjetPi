@@ -1,0 +1,22 @@
+/* Style des colonnes */
+.my-table-view .column-header {
+    /* Couleur d'arrière-plan des en-têtes de colonne */
+    -fx-background-color: white;
+}
+
+/* Style du texte des en-têtes de colonne */
+.my-table-view .column-header .label {
+    /* Couleur du texte des en-têtes de colonne */
+    -fx-text-fill: black; /* Couleur du texte noir */
+}
+
+
+/* Pour personnaliser les boutons */
+.button {
+    /* Couleur de fond des boutons */
+    -fx-background-color: #003788;
+    -fx-text-fill: white;
+}
+
+
+

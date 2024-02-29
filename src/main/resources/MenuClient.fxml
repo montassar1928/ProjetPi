@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Text?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="628.0" prefWidth="164.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MenuClient">
+   <children>
+      <AnchorPane prefHeight="730.0" prefWidth="160.0" stylesheets="@Styles/MenuClient.css">
+         <children>
+            <VBox prefHeight="118.0" prefWidth="180.0" styleClass="main_menu_container" stylesheets="@Styles/MenuClient.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="4.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="56.0">
+                     <image>
+                        <Image url="@images/428026953_281625504949153_814641542176646955_n.png" />
+                     </image>
+                  </ImageView>
+                  <Label styleClass="title" stylesheets="@Styles/MenuClient.css" text="UNIBANK" textFill="#003788" />
+               </children>
+            </VBox>
+            <VBox layoutX="-1.0" layoutY="122.0" prefHeight="376.0" prefWidth="156.0" styleClass="menu_container" stylesheets="@Styles/MenuClient.css">
+               <children>
+                  <Button fx:id="Dash_btn" mnemonicParsing="false" onAction="#handleDashboardAction" prefHeight="25.0" prefWidth="95.0" stylesheets="@Styles/MenuClient.css" text="Dashboard">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="HOME" wrappingWidth="9.74609375" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="109.0" text="Transactions ">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="HANDSHAKE_ALT" />
+                     </graphic>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Accounts">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="ADDRESS_BOOK_ALT" />
+                     </graphic>
+                  </Button>
+                  <Button fx:id="credits_btn" mnemonicParsing="false" text="Loan Request">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="BOOK" />
+                     </graphic>
+                  </Button>
+                  <Line endX="37.5" startX="166.7928924560547" startY="-0.20710676908493042" />
+                  <Button fx:id="profile_btn" mnemonicParsing="false" onAction="#handleProfileAction" prefHeight="25.0" prefWidth="67.0" styleClass="alt_menu_btn" text="Profile">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="USER" size="16" text="" />
+                     </graphic>
+                  </Button>
+
+                  <Button fx:id="logout_btn" mnemonicParsing="false" onAction="#handleLogoutAction" styleClass="alt_menu_btn" text="Logout">
+                     <graphic>
+                        <FontAwesomeIconView glyphName="EXTERNAL_LINK" />
+                     </graphic>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <VBox prefHeight="103.0" prefWidth="136.0" styleClass="report_container" stylesheets="@Styles/MenuClient.css">
+         <VBox.margin>
+            <Insets bottom="14.0" left="14.0" right="14.0" />
+         </VBox.margin>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Report Bug ?" />
+            <Label styleClass="report_container" stylesheets="@Styles/MenuClient.css" text="Use this to report any errors" />
+            <Button mnemonicParsing="false" text="Report">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" />
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</VBox>

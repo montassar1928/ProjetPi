@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: #FFFFFF;">
+    <children>
+        <VBox alignment="CENTER" spacing="20" layoutX="50" layoutY="50" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="50" AnchorPane.bottomAnchor="50" style="-fx-background-color: #FFFFFF; -fx-padding: 40; -fx-background-radius: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,55,136,0.5), 10, 0, 0, 10);">
+            <children>
+                <!-- FontAwesome Icon for Lock -->
+                <FontAwesomeIconView fill="#003788" glyphName="LOCK" size="50" styleClass="lock-icon" />
+                <!-- Title Text -->
+                <Text text="Forgot Password" style="-fx-font-size: 24; -fx-fill: #003788; -fx-font-weight: bold;"/>
+                <!-- Username or Email Input -->
+                <TextField fx:id="usernameField" promptText="Username or Email" maxWidth="300" styleClass="text-field"/>
+                <!-- Security Question ComboBox -->
+                <ComboBox fx:id="securityQuestionComboBox" promptText="Security Question" maxWidth="300" styleClass="combo-box"/>
+                <!-- Answer Input -->
+                <TextField fx:id="answerField" promptText="Answer" maxWidth="300" styleClass="text-field"/>
+                <!-- Proceed Button -->
+                <Button text="Proceed" maxWidth="300" styleClass="button"/>
+                <!-- Back Button -->
+                <Button text="Back" maxWidth="300" styleClass="button button-back"/>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>
+

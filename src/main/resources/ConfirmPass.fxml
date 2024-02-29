@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="390.0" prefWidth="279.0" styleClass="main-pane" stylesheets="@Styles/ConfirmPass.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21">
+    <children>
+        <VBox alignment="CENTER" layoutX="50.0" layoutY="44.0" spacing="20" styleClass="form-box" AnchorPane.bottomAnchor="56.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="44.0">
+            <children>
+                <!-- FontAwesome Icon -->
+                <FontAwesomeIconView fill="#003788" glyphName="LOCK" size="60" styleClass="lock-icon" />
+                <!-- Title Text -->
+                <Text styleClass="title-text" text="Forgot Password" />
+                <!-- New Password Input -->
+                <TextField fx:id="passwordField" maxWidth="300" promptText="New Password" styleClass="text-field" />
+                <!-- Confirm Password Input -->
+                <TextField fx:id="confirmPasswordField" maxWidth="300" promptText="Confirm Password" styleClass="text-field" />
+                <!-- Change Password Button -->
+                <Button maxWidth="300" styleClass="button" text="Change Password" />
+                <!-- Back Button -->
+                <Button maxWidth="300" styleClass="button-back" text="Back" />
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

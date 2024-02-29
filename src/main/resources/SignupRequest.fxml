@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupRequest">
+    <left>
+        <fx:include source="MenuBanque.fxml" />
+    </left>
+    <center>
+        <AnchorPane fx:id="mainAnchorPane" prefHeight="628.0" prefWidth="763.0">
+            <stylesheets>
+                <!-- Spécifiez le chemin vers votre fichier CSS -->
+                <URL value="@/Styles/my-table-view.css" />
+            </stylesheets>
+            <TableView fx:id="SignTableView" layoutX="12.0" layoutY="114.0" prefHeight="360.0" prefWidth="597.0" styleClass="my-table-view">
+                <columns>
+                    <!-- Colonne ID -->
+                    <TableColumn fx:id="idColumn" prefWidth="30" text="ID">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="id" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Nom -->
+                    <TableColumn fx:id="nomColumn" prefWidth="70" text="Nom">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="nom" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Prénom -->
+                    <TableColumn fx:id="prenomColumn" prefWidth="70" text="Prénom">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="prenom" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Email -->
+                    <TableColumn fx:id="emailColumn" prefWidth="73.0" text="Email">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="email" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Date de création -->
+                    <TableColumn fx:id="dateCreationColumn" prefWidth="147.0" text="Date de création">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="dateCreation" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Adresse -->
+                    <TableColumn fx:id="adresseColumn" prefWidth="73.0" text="Adresse">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="adresse" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Téléphone -->
+                    <TableColumn fx:id="telephoneColumn" prefWidth="80" text="Téléphone">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="telephone" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Date de Naissance -->
+                    <TableColumn fx:id="dateNaissanceColumn" prefWidth="100" text="Date de Naissance">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="dateNaissance" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Statut -->
+                    <TableColumn fx:id="statutColumn" prefWidth="70" text="Statut">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="statut" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne CIN -->
+                    <TableColumn fx:id="cinColumn" prefWidth="70" text="CIN">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="cin" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Photo -->
+                    <TableColumn fx:id="photoColumn" prefWidth="70" text="Photo">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="photo" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <!-- Colonne Rôle -->
+                    <TableColumn fx:id="roleColumn" prefWidth="70" text="Rôle">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="role" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+        </AnchorPane>
+    </center>
+</BorderPane>

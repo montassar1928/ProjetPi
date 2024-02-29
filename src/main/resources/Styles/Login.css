@@ -1,0 +1,61 @@
+
+/* Login Container Styles */
+.login_logo_container {
+    -fx-background-color: #003788;
+    -fx-alignment: center;
+}
+
+.login_logo_container Text {
+    -fx-font-size: 2em; /* Augmenter la taille de la police pour plus de visibilité */
+    -fx-fill: #FFFFFF; /* La couleur blanche pour le texte, cela peut rester inchangé si vous êtes satisfait de la couleur */
+    -fx-font-family: 'Arial'; /* Choisir une famille de polices qui correspond à l'aspect visuel de votre marque */
+    -fx-font-weight: bold; /* Rendre le texte en gras pour qu'il se démarque */
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.8) , 10, 0 , 0 , 3 ); /* Ajouter une ombre pour améliorer la lisibilité sur différents fonds */
+}
+
+
+/* Styles/Login.css */
+
+/* Boutons */
+.button {
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+}
+
+/* Bouton de connexion */
+.button.login-button {
+    -fx-background-color: #003788; /* Couleur verte */
+    -fx-text-fill: white; /* Texte blanc */
+}
+
+/* Bouton de création de compte */
+.button.create-account-button {
+    -fx-background-color: #003788; /* Couleur bleue */
+    -fx-text-fill: a; /* Texte blanc */
+}
+
+/* Lien Forgot Password */
+/* Styles/Login.css */
+
+/* Lien Forgot Password */
+.label.forgot-password {
+    -fx-font-size: 14px;
+    -fx-text-fill: #1558a9; /* Blue color */
+    -fx-padding: 0 0 4 0; /* Space at the bottom for the custom underline */
+    -fx-cursor: hand; /* Changes the cursor to a hand symbol when hovering over the label */
+    /* Other styling properties */
+}
+
+.label.forgot-password:hover {
+    -fx-text-fill: #1558a9; /* Blue color */
+    -fx-underline: true; /* Adds underline on hover */
+    /* Other styling properties for hover */
+}
+
+
+
+.root {
+    -fx-background-color: #f2f2f2;
+}
