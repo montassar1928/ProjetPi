@@ -125,6 +125,23 @@ public class BankClients {
         loadUsersData();
         BanqueTableView.refresh();
     }
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private void handleSearch() {
+        String keyword = searchField.getText().trim();
+        if (!keyword.isEmpty()) {
+            ObservableList<Users> filteredList = usersList.filtered(user ->
+                            user.getNom().toLowerCase().contains(keyword.toLowerCase()) ||
+                                    user.getPrenom().toLowerCase().contains(keyword.toLowerCase()) ||
+                                    user.getEmail().toLowerCase().contains(keyword.toLowerCase())
+            );
+            BanqueTableView.setItems(filteredList);
+        } else {
+            BanqueTableView.setItems(usersList);
+        }
+    }
 
     @FXML
     private void handleEditUser(Users user) {

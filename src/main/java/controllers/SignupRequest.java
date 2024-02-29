@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 import models.Role;
@@ -58,6 +59,9 @@ public class SignupRequest {
 
     @FXML
     private TableColumn<Users, Role> roleColumn;
+    @FXML
+    private TextField searchField;
+
 
     private ServiceBanque serviceBanque;
     private ObservableList<Users> usersList;
@@ -153,8 +157,20 @@ public class SignupRequest {
         SignTableView.getColumns().add(actionColumn);
     }
 
-    // Vos autres méthodes
-}
+    @FXML
+    private void handleSearch() {
+
+        String keyword = searchField.getText().trim();
+        if (!keyword.isEmpty()) {
+            ObservableList<Users> filteredList = usersList.filtered(user ->
+                    user.getNom().toLowerCase().contains(keyword.toLowerCase()) ||
+                            user.getPrenom().toLowerCase().contains(keyword.toLowerCase())
+            );
+            SignTableView.setItems(filteredList);
+        } else {
+            SignTableView.setItems(usersList);
+        }
+    }}
 
 
 

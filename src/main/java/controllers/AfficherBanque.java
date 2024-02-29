@@ -90,16 +90,11 @@ public class AfficherBanque {
         cinColumn.setCellValueFactory(new PropertyValueFactory<>("cin"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
 
-        // Chargement des données dans le TableView
         loadUsersData();
 
-        // Activer l'édition des cellules dans la TableView
         BanqueTableView.setEditable(true);
 
-        // Ajouter un événement sur les cellules de la colonne "nom" pour activer l'édition lorsqu'elles sont cliquées
 
-
-        // Boutons Edit et Delete
         addEditAndDeleteButtonsToTableView();
     }
 
@@ -239,7 +234,6 @@ public class AfficherBanque {
     }
 
 
-    // Méthode pour ajouter des écouteurs pour les cellules éditables des autres colonnes
 
 
 
@@ -270,10 +264,8 @@ public class AfficherBanque {
             javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/AfficherBanque.fxml"));
             javafx.scene.Parent afficherBanqueView = loader.load();
 
-            // Passer l'utilisateur au contrôleur AfficherBanque
             AfficherBanque afficherBanqueController = loader.getController();
-            // On suppose que getCurrentUser() est une méthode publique statique
-            afficherBanqueController.setCurrentUser(LoginFXML.getCurrentUser()); // Utilisez le getter ici
+            afficherBanqueController.setCurrentUser(LoginFXML.getCurrentUser());
 
             javafx.scene.Scene afficherBanqueScene = new javafx.scene.Scene(afficherBanqueView);
             javafx.stage.Stage primaryStage = (javafx.stage.Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();

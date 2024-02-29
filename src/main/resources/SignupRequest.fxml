@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SignupRequest">
     <left>
@@ -17,7 +21,7 @@
                 <!-- Spécifiez le chemin vers votre fichier CSS -->
                 <URL value="@/Styles/my-table-view.css" />
             </stylesheets>
-            <TableView fx:id="SignTableView" layoutX="12.0" layoutY="114.0" prefHeight="360.0" prefWidth="597.0" styleClass="my-table-view">
+            <TableView fx:id="SignTableView" layoutX="31.0" layoutY="169.0" prefHeight="436.0" prefWidth="597.0" styleClass="my-table-view">
                 <columns>
                     <!-- Colonne ID -->
                     <TableColumn fx:id="idColumn" prefWidth="30" text="ID">
@@ -93,6 +97,10 @@
                     </TableColumn>
                 </columns>
             </TableView>
+            <Button layoutX="548.0" layoutY="69.0" onAction="#handleSearch" prefHeight="25.0" prefWidth="80.0" text="Rechercher" />
+            <TextField fx:id="searchField" layoutX="453.0" layoutY="69.0" prefHeight="25.0" prefWidth="88.0" />
+            <Label layoutX="407.0" layoutY="73.0" text="Search" />
+            <Text layoutX="301.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clients List" />
         </AnchorPane>
     </center>
 </BorderPane>
