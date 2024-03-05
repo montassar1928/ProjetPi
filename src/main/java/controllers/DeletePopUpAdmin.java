@@ -25,7 +25,7 @@ public class DeletePopUpAdmin {
     private Stage stage;
     private Users currentUser;
     private ServiceAdmin serviceAdmin;
-    private PasswordField passwordField; // Déclaration du champ passwordField
+    private PasswordField passwordField;
 
     public DeletePopUpAdmin(Users currentUser) {
         this.currentUser = currentUser;
@@ -36,7 +36,7 @@ public class DeletePopUpAdmin {
         stage.setTitle("Delete Account");
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        // Créer les éléments de l'interface utilisateur
+
         VBox root = new VBox();
         passwordField = new PasswordField(); // Initialisation du passwordField
         passwordField.setPromptText("Enter your password");
@@ -58,14 +58,11 @@ public class DeletePopUpAdmin {
         String enteredPassword = passwordField.getText();
         if (BCrypt.checkpw(enteredPassword, currentUser.getPassword())) {
             try {
-                // Mettre à jour le statut du compte de l'utilisateur à "inactif"
                 currentUser.setStatut("Inactif");
                 serviceAdmin.deleteOne(currentUser);
 
-                // Afficher une notification de suppression réussie
                 showAlert("Account Deleted", "Your account has been successfully deleted.");
 
-                // Fermer la fenêtre de suppression de compte
                 stage.close();
                 redirectToLoginPage();
             } catch (SQLException ex) {
@@ -103,13 +100,10 @@ public class DeletePopUpAdmin {
     @FXML
     private void openDeletePopup(ActionEvent event) {
         try {
-            // Récupérer l'utilisateur courant
             Users currentUser = getCurrentUser(); // Assurez-vous d'avoir une méthode pour récupérer l'utilisateur courant
 
-            // Création de la fenêtre de suppression de compte en passant l'utilisateur courant
             DeletePopUpAdmin deletePopUp = new DeletePopUpAdmin(currentUser);
 
-            // Affichage de la fenêtre modale
             deletePopUp.show();
         } catch (Exception e) {
             e.printStackTrace();

@@ -31,12 +31,10 @@ public class DeletePopUpBanque {
         this.currentUser = currentUser;
         this.serviceBanque = new ServiceBanque();
 
-        // Créer la fenêtre de suppression de compte
         stage = new Stage();
         stage.setTitle("Delete Account");
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        // Créer les éléments de l'interface utilisateur
         VBox root = new VBox();
         passwordField = new PasswordField(); // Initialisation du passwordField
         passwordField.setPromptText("Enter your password");
@@ -46,7 +44,6 @@ public class DeletePopUpBanque {
         cancelButton.setOnAction(event -> stage.close());
         root.getChildren().addAll(passwordField, confirmButton, cancelButton);
 
-        // Afficher la entry modale
         stage.setScene(new Scene(root, 300, 200));
     }
 
@@ -58,14 +55,11 @@ public class DeletePopUpBanque {
         String enteredPassword = passwordField.getText();
         if (BCrypt.checkpw(enteredPassword, currentUser.getPassword())) {
             try {
-                // Mettre à jour le statut du compte de l'utilisateur à "inactif"
                 currentUser.setStatut("Inactif");
                 serviceBanque.deleteOne(currentUser);
 
-                // Afficher une notification de suppression réussie
                 showAlert("Account Deleted", "Your account has been successfully deleted.");
 
-                // Fermer la fenêtre de suppression de compte
                 stage.close();
                 redirectToLoginPage();
             } catch (SQLException ex) {
@@ -103,13 +97,10 @@ public class DeletePopUpBanque {
     @FXML
     private void openDeletePopup(ActionEvent event) {
         try {
-            // Récupérer l'utilisateur courant
             Users currentUser = getCurrentUser(); // Assurez-vous d'avoir une méthode pour récupérer l'utilisateur courant
 
-            // Création de la fenêtre de suppression de compte en passant l'utilisateur courant
             DeletePopUpAdmin deletePopUp = new DeletePopUpAdmin(currentUser);
 
-            // Affichage de la fenêtre modale
             deletePopUp.show();
         } catch (Exception e) {
             e.printStackTrace();

@@ -15,11 +15,15 @@ import models.Role;
 import models.Users;
 import services.ServiceAdmin;
 import services.ServiceUsers;
+import utils.DBConnection;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
@@ -83,7 +87,7 @@ public class SignUpBank {
 
 
     @FXML
-    void insertUser() {
+    void insertUser() throws SQLException {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
@@ -95,7 +99,11 @@ public class SignUpBank {
         String photoPath = photoPathField.getText();
         LocalDate birthdate = null;
         String raisonSociale = raisonSocialeField.getText(); // Récupération de la raison sociale
-
+        if (userExistsWithEmail(email)) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Un utilisateur avec cet email existe déjà.");
+            // Vous pouvez lancer une exception ou afficher un message d'erreur selon vos besoins
+            return;
+        }
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty() || address.isEmpty() || idNumber.isEmpty() || birthdatePicker.getValue() == null || photoPath.isEmpty() || phoneText.isEmpty() || raisonSociale.isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez remplir tous les champs !");
             return;
@@ -187,6 +195,28 @@ public class SignUpBank {
             showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de la lecture de la photo : " + e.getMessage());
             return null;
         }
+    }
+    private boolean userExistsWithEmail(String email) throws SQLException {
+        try {
+            Connection connection = DBConnection.getInstance().getCnx();
+            if (connection != null && !connection.isClosed()) {
+                String query = "SELECT COUNT(*) AS count FROM users WHERE email = ?";
+                try (PreparedStatement statement = connection.prepareStatement(query)) {
+                    statement.setString(1, email);
+                    try (ResultSet resultSet = statement.executeQuery()) {
+                        if (resultSet.next()) {
+                            int count = resultSet.getInt("count");
+                            return count > 0; // Si count est supérieur à 0, cela signifie qu'un utilisateur avec cet email existe déjà
+                        }
+                    }
+                }
+            } else {
+                System.err.println("La connexion à la base de données est fermée ou invalide.");
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la vérification de l'existence de l'utilisateur : " + e.getMessage());
+        }
+        return false;
     }
 
 

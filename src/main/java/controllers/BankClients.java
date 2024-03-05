@@ -65,6 +65,9 @@ public class BankClients {
 
     public  void setCurrentUser(Users currentUser) {
     }
+    SignUPFXML emailexist = new SignUPFXML();
+
+
 
     public void initialize() {
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -79,7 +82,6 @@ public class BankClients {
         cinColumn.setCellValueFactory(new PropertyValueFactory<>("cin"));
         roleColumn.setCellValueFactory(new PropertyValueFactory<>("role"));
 
-        // Set cell factories for editable columns
 
         serviceBanque = new ServiceBanque();
 
@@ -145,17 +147,19 @@ public class BankClients {
 
     @FXML
     private void handleEditUser(Users user) {
-        Dialog<ButtonType> dialog = new Dialog<>();
+//popup
+        Dialog<Users> dialog = new Dialog<>();
         dialog.setTitle("Edit User");
         dialog.setHeaderText("Edit User Information");
 
-        // Création des champs pour la saisie des informations
+        // Créer les champs pour modifier les informations de l'utilisateur avec les valeurs existantes
         TextField nomField = new TextField(user.getNom());
         TextField prenomField = new TextField(user.getPrenom());
         TextField emailField = new TextField(user.getEmail());
         TextField adresseField = new TextField(user.getAdresse());
         TextField telephoneField = new TextField(String.valueOf(user.getTelephone()));
 
+        // Créer la disposition de la boîte de dialogue
         GridPane grid = new GridPane();
         grid.add(new Label("Nom:"), 0, 0);
         grid.add(nomField, 1, 0);
@@ -170,60 +174,84 @@ public class BankClients {
 
         dialog.getDialogPane().setContent(grid);
 
+        // Ajouter les boutons de confirmation et d'annulation
         ButtonType confirmButtonType = new ButtonType("Confirm", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(confirmButtonType, ButtonType.CANCEL);
 
+        // Désactiver le bouton de confirmation initialement
         Node confirmButton = dialog.getDialogPane().lookupButton(confirmButtonType);
-        confirmButton.setDisable(true); // Commencez avec le bouton de confirmation désactivé
+        confirmButton.setDisable(true);
 
-        // Logique de validation
+        // Logique de validation des champs
         Runnable validateFields = () -> {
             boolean allFieldsValid = !nomField.getText().trim().isEmpty() &&
                     !prenomField.getText().trim().isEmpty() &&
-                    !emailField.getText().trim().isEmpty() &&
                     !adresseField.getText().trim().isEmpty() &&
-                    telephoneField.getText().matches("\\d*"); // Simple vérification de chiffres
+                    !telephoneField.getText().trim().isEmpty() && // Vérification que le numéro de téléphone n'est pas vide
+                    telephoneField.getText().matches("\\d*") && // Vérification que le téléphone contient uniquement des chiffres
+                    emailField.getText().matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.(com|fr)"); // Validation simple de l'email
+
             confirmButton.setDisable(!allFieldsValid);
         };
 
-        // Attachez la logique de validation aux propriétés de texte
-        nomField.textProperty().addListener((obs, old, newVal) -> validateFields.run());
-        prenomField.textProperty().addListener((obs, old, newVal) -> validateFields.run());
-        emailField.textProperty().addListener((obs, old, newVal) -> validateFields.run());
-        adresseField.textProperty().addListener((obs, old, newVal) -> validateFields.run());
-        telephoneField.textProperty().addListener((obs, old, newVal) -> validateFields.run());
+        // Attacher la logique de validation aux propriétés de texte de chaque champ
+        nomField.textProperty().addListener((obs, oldVal, newVal) -> validateFields.run());
+        prenomField.textProperty().addListener((obs, oldVal, newVal) -> validateFields.run());
+        emailField.textProperty().addListener((obs, oldVal, newVal) -> validateFields.run());
+        adresseField.textProperty().addListener((obs, oldVal, newVal) -> validateFields.run());
+        telephoneField.textProperty().addListener((obs, oldVal, newVal) -> validateFields.run());
 
-        // Initialisez la validation
+        // Initialiser la validation pour refléter l'état initial des champs
         validateFields.run();
 
-        Optional<ButtonType> result = dialog.showAndWait();
-        if (result.isPresent() && result.get() == confirmButtonType) {
-            // Mise à jour de l'utilisateur
-            user.setNom(nomField.getText());
-            user.setPrenom(prenomField.getText());
-            user.setEmail(emailField.getText());
-            user.setAdresse(adresseField.getText());
-            try {
+        // Stocker l'email initial pour comparer plus tard
+        String initialEmail = emailField.getText();
+
+        // Définir la conversion du résultat en cliquant sur le bouton de confirmation
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == confirmButtonType) {
+                // Vérifier si l'e-mail a été modifié
+                if (!initialEmail.equals(emailField.getText())) {
+                    // Vérification de l'existence de l'e-mail
+                    try {
+                        if (emailexist.userExistsWithEmail(emailField.getText())) {
+                            emailexist.showAlert(Alert.AlertType.ERROR, "Erreur", "Un utilisateur avec cet email existe déjà.");
+                            return null; // Empêche la fermeture de la boîte de dialogue
+                        }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        return null; // En cas d'erreur, empêcher la fermeture
+                    }
+                }
+
+                // Construire l'utilisateur mis à jour et le retourner
+                user.setNom(nomField.getText());
+                user.setPrenom(prenomField.getText());
+                user.setEmail(emailField.getText());
+                user.setAdresse(adresseField.getText());
                 user.setTelephone(Integer.parseInt(telephoneField.getText()));
-            } catch (NumberFormatException e) {
-                // Gérer les erreurs de parsing potentielles ici
+                return user; // Retourner l'utilisateur mis à jour
             }
 
+            return null; // Ne rien faire si l'utilisateur annule
+        });
+
+        // Afficher la boîte de dialogue et attendre la réponse de l'utilisateur
+        Optional<Users> result = dialog.showAndWait();
+        result.ifPresent(updatedUser -> {
             try {
-                serviceBanque.updateUserInfo(user); // Met à jour les informations utilisateur dans la base de données
+                // Appeler la méthode pour mettre à jour l'utilisateur dans la base de données
+                serviceBanque.updateUserInfo(updatedUser);
                 BanqueTableView.refresh();
-                refresh(); // Rafraîchit la liste des utilisateurs affichée dans la table
-                System.out.println("Utilisateur modifié avec succès : " + user);
+                refresh();
+
+                System.out.println("Utilisateur mis à jour avec succès : " + updatedUser);
             } catch (SQLException e) {
                 e.printStackTrace();
-                System.err.println("Erreur lors de la modification de l'utilisateur : " + e.getMessage());
+                System.err.println("Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
             }
-        } else {
-            // Le résultat n'était pas présent ou était faux, traiter en conséquence
-            System.out.println("La modification de l'utilisateur a été annulée.");
-        }
+        });
     }
-
 
     private void addEditAndDeleteButtonsToTable() {
         // Création des boutons "Edit" et "Delete" dans une nouvelle colonne

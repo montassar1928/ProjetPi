@@ -48,7 +48,7 @@ public class LoginFXML {
 
     DBConnection cnx = DBConnection.getInstance();
     Connection connection = cnx.getCnx();
-    private ServiceUsers serviceUsers = new ServiceUsers(); // Initialisez votre service ici
+    private ServiceUsers serviceUsers = new ServiceUsers();
     private ServiceAdmin serviceAdmin= new ServiceAdmin();
     private ServiceBanque serviceBanque= new ServiceBanque();
 
@@ -58,10 +58,8 @@ public class LoginFXML {
 
     @FXML
     void initialize() {
-        // Ajoutez un gestionnaire d'événements pour le clic sur le bouton de création de compte
         createButton.setOnAction(event -> handleCreateAccountButtonClick());
 
-        // Ajoutez un gestionnaire d'événements pour la case à cocher "Show Password"
         ShowPass.setOnAction(event -> handleShowPassCheckboxClick());
         plainTextField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (ShowPass.isSelected()) {
@@ -166,12 +164,10 @@ public class LoginFXML {
     @FXML
     void handleShowPassCheckboxClick() {
         if (ShowPass.isSelected()) {
-            // Afficher le mot de passe en clair
             plainTextField.setText(PasswordField.getText());
             plainTextField.setVisible(true);
             PasswordField.setVisible(false);
         } else {
-            // Masquer le mot de passe en clair et montrer le PasswordField à nouveau
             PasswordField.setText(plainTextField.getText());
             PasswordField.setVisible(true);
             plainTextField.setVisible(false);
@@ -179,18 +175,14 @@ public class LoginFXML {
     }
 
     public void handleCreateAccountButtonClick() {
-        // Charger la vue de la page d'inscription depuis le fichier FXML
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/SignUP.fxml"));
             Parent signupRoot = loader.load();
 
-            // Créer une nouvelle scène avec la vue de la page d'inscription
             Scene signupScene = new Scene(signupRoot);
 
-            // Récupérer la fenêtre principale (stage) à partir du bouton de création de compte
             Stage primaryStage = (Stage) createButton.getScene().getWindow();
 
-            // Changer la scène pour afficher celle de la page d'inscription
             primaryStage.setScene(signupScene);
         } catch (IOException e) {
             e.printStackTrace(); // Gérer les éventuelles erreurs de chargement du fichier FXML
@@ -204,7 +196,6 @@ public class LoginFXML {
         alert.setHeaderText(null); // Pas d'en-tête spécifique
         alert.setContentText(message); // Définir le message de l'alerte
 
-        // Afficher l'alerte et attendre que l'utilisateur la ferme
         alert.showAndWait();
     }
 

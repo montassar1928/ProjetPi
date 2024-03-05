@@ -5,6 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane prefHeight="700.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ProfileClient">
@@ -13,19 +14,46 @@
     </left>
     <center>
         <AnchorPane prefHeight="677.0" prefWidth="686.0">
+            <Text fx:id="labelName" layoutX="456.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="aaa" wrappingWidth="91.0" AnchorPane.leftAnchor="456.0" AnchorPane.topAnchor="167.1015625">
+            <font>
+               <Font size="18.0" />
+            </font></Text>
+            <Text fx:id="labelFirstName" layoutX="561.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="zzzzzzz" wrappingWidth="85.0" AnchorPane.leftAnchor="561.0" AnchorPane.topAnchor="167.1015625">
+            <font>
+               <Font size="18.0" />
+            </font></Text>
+            <Text layoutX="250.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Information" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="29.1015625">
+            <font>
+               <Font size="24.0" />
+            </font></Text>
+            <ImageView fx:id="imageProfile" fitHeight="109.0" fitWidth="148.0" layoutX="487.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="313.0" layoutY="551.0" mnemonicParsing="false" onAction="#openChangePasswordPopup" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #003788;" text="Change Password" textFill="WHITE" />
+            <Button layoutX="456.0" layoutY="551.0" mnemonicParsing="false" onAction="#openDeletePopup" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #003788;" text="Delete Account" textFill="WHITE" />
+            <Label fx:id="telephoneID" layoutX="95.0" layoutY="215.0" text="telephone" />
+            <Label fx:id="EmailID" layoutX="96.0" layoutY="301.0" text="EMAIL" />
+            <Label fx:id="Birthid" layoutX="97.0" layoutY="395.0" text="dateDeNaissance" />
+            <Label fx:id="creationID" layoutX="95.0" layoutY="492.0" text="DateCreation" />
+         <Label layoutX="96.0" layoutY="170.0" style="-fx-background-color: #033788*;" text="Téléphone :" textFill="#033788">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="96.0" layoutY="251.0" style="-fx-background-color: #033788*;" text="Email :" textFill="#033788">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="95.0" layoutY="343.0" style="-fx-background-color: #033788*;" text="Date de naissance" textFill="#033788">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="95.0" layoutY="431.0" style="-fx-background-color: #033788*;" text="Date de creation" textFill="#033788">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
 
-            <Text fx:id="labelName" layoutX="421.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="aaa" wrappingWidth="91.0" AnchorPane.leftAnchor="421.0" AnchorPane.topAnchor="166.0" />
-
-            <Text fx:id="labelFirstName" layoutX="476.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="zzzzzzz" wrappingWidth="85.0" AnchorPane.leftAnchor="476.0" AnchorPane.topAnchor="166.0" />
-
-            <Text layoutX="243.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account Information" AnchorPane.leftAnchor="243.0" AnchorPane.topAnchor="55.0" />
-         <ImageView fx:id="imageProfile" fitHeight="109.0" fitWidth="148.0" layoutX="413.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" />
-         <Button layoutX="446.0" layoutY="391.0" mnemonicParsing="false" onAction="#openChangePasswordPopup" prefHeight="25.0" prefWidth="125.0" text="Change Password" />
-         <Button layoutX="444.0" layoutY="452.0" mnemonicParsing="false" onAction="#openDeletePopup" prefHeight="25.0" prefWidth="125.0" text="Delete Account" />
-         <Label fx:id="telephoneID" layoutX="90.0" layoutY="166.0" text="telephone" />
-         <Label fx:id="EmailID" layoutX="90.0" layoutY="211.0" text="EMAIL" />
-         <Label fx:id="Birthid" layoutX="90.0" layoutY="256.0" text="dateDeNaissance" />
-         <Label fx:id="creationID" layoutX="90.0" layoutY="300.0" text="DateCreation" />
-        </AnchorPane>
+            </AnchorPane>
     </center>
 </BorderPane>

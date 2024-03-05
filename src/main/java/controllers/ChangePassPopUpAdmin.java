@@ -67,6 +67,12 @@ public class ChangePassPopUpAdmin {
             return;
         }
 
+        // Validation du format du nouveau mot de passe
+        if (!newPassword.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}")) {
+            showAlert("Erreur", "Le nouveau mot de passe doit contenir au moins 8 caractères, dont des majuscules, des minuscules, un chiffre, et un caractère spécial !");
+            return;
+        }
+
         if (!newPassword.equals(confirmNewPassword)) {
             showAlert("Erreur", "Le nouveau mot de passe et la confirmation ne correspondent pas.");
             return;
@@ -81,10 +87,10 @@ public class ChangePassPopUpAdmin {
         try {
             // Mettre à jour le mot de passe dans la base de données
             currentUser.setPassword(newPassword);
-            serviceAdmin.updatePass(currentUser); // Utiliser serviceAdmin pour mettre à jour l'utilisateur
+            serviceAdmin.updatePass(currentUser);
 
             // Récupérer à nouveau l'utilisateur avec le nouveau mot de passe
-            currentUser = serviceAdmin.getAdminByEmail(currentUser.getEmail()); // Utiliser serviceAdmin pour récupérer l'utilisateur
+            currentUser = serviceAdmin.getAdminByEmail(currentUser.getEmail());
 
             // Mettre à jour l'utilisateur courant dans LoginFXML
             LoginFXML.setCurrentUser(currentUser);
@@ -96,6 +102,7 @@ public class ChangePassPopUpAdmin {
             e.printStackTrace();
         }
     }
+
 
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

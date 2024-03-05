@@ -170,7 +170,9 @@ public class SignupRequest {
         } else {
             SignTableView.setItems(usersList);
         }
-    }}
+    }
+
+}
 
 
 

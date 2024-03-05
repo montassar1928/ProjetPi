@@ -110,7 +110,6 @@ public class SignUPFXML {
         }
 
         // Vérification du format de l'email
-        // Vérification du format de l'email avec les domaines spécifiques
         if (!email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.(com|fr)")) {
             showAlert(Alert.AlertType.ERROR, "Erreur", "Format de l'email invalide ! Veuillez utiliser un email avec un domaine .com ou .fr.");
             return;
@@ -215,7 +214,7 @@ public class SignUPFXML {
             return null;
         }
     }
-    private boolean userExistsWithEmail(String email) throws SQLException {
+    public boolean userExistsWithEmail(String email) throws SQLException {
         try {
             Connection connection = DBConnection.getInstance().getCnx();
             if (connection != null && !connection.isClosed()) {

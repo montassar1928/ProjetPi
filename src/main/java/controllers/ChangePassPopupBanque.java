@@ -21,8 +21,8 @@ public class ChangePassPopupBanque {
     private PasswordField confirmNewPasswordField;
     private Button submitButton;
     private Stage popupStage;
-    private ServiceBanque serviceBanque; // Utiliser ServiceAdmin au lieu de ServiceUsers
-    private Users currentUser; // Variable pour stocker l'utilisateur courant
+    private ServiceBanque serviceBanque;
+    private Users currentUser;
 
     public ChangePassPopupBanque(Users currentUser) {
 
@@ -31,7 +31,7 @@ public class ChangePassPopupBanque {
         popupStage.initModality(Modality.APPLICATION_MODAL);
         popupStage.setTitle("Change Password");
 
-        serviceBanque = new ServiceBanque(); // Utiliser ServiceAdmin au lieu de ServiceUsers
+        serviceBanque = new ServiceBanque();
 
         // Initialize UI components
         oldPasswordField = new PasswordField();
@@ -40,7 +40,6 @@ public class ChangePassPopupBanque {
         submitButton = new Button("Submit");
         submitButton.setOnAction(this::onSubmitButtonClick);
 
-        // Create layout
         GridPane gridPane = new GridPane();
         gridPane.setHgap(10);
         gridPane.setVgap(10);
@@ -49,7 +48,6 @@ public class ChangePassPopupBanque {
         gridPane.addRow(2, new Label("Confirm New Password:"), confirmNewPasswordField);
         gridPane.addRow(3, submitButton);
 
-        // Add layout to scene
         popupStage.setScene(new Scene(gridPane, 300, 200));
     }
 
@@ -67,8 +65,8 @@ public class ChangePassPopupBanque {
             return;
         }
 
-        if (!newPassword.equals(confirmNewPassword)) {
-            showAlert("Erreur", "Le nouveau mot de passe et la confirmation ne correspondent pas.");
+        if (!newPassword.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}")) {
+            showAlert("Erreur", "Le nouveau mot de passe doit contenir au moins 8 caractères, dont des majuscules, des minuscules, un chiffre, et un caractère spécial !");
             return;
         }
 
@@ -79,11 +77,8 @@ public class ChangePassPopupBanque {
         }
 
         try {
-            // Mettre à jour le mot de passe dans la base de données
             currentUser.setPassword(newPassword);
-            serviceBanque.updatePass(currentUser); // Utiliser serviceAdmin pour mettre à jour l'utilisateur
-
-            // Récupérer à nouveau l'utilisateur avec le nouveau mot de passe
+            serviceBanque.updatePass(currentUser);
             currentUser = serviceBanque.getBanqueByEmail(currentUser.getEmail()); // Utiliser serviceAdmin pour récupérer l'utilisateur
 
             // Mettre à jour l'utilisateur courant dans LoginFXML

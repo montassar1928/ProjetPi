@@ -22,18 +22,17 @@ public class DeletePopUp {
     private Stage stage;
     private Users currentUser;
     private ServiceUsers serviceUsers;
-    private PasswordField passwordField; // Déclaration du champ passwordField
+    private PasswordField passwordField;
 
     public DeletePopUp(Users currentUser) {
         this.currentUser = currentUser;
         this.serviceUsers = new ServiceUsers();
 
-        // Créer la fenêtre de suppression de compte
         stage = new Stage();
         stage.setTitle("Delete Account");
         stage.initModality(Modality.APPLICATION_MODAL);
 
-        // Créer les éléments de l'interface utilisateur
+
         VBox root = new VBox();
         passwordField = new PasswordField(); // Initialisation du passwordField
         passwordField.setPromptText("Enter your password");
@@ -43,7 +42,6 @@ public class DeletePopUp {
         cancelButton.setOnAction(event -> stage.close());
         root.getChildren().addAll(passwordField, confirmButton, cancelButton);
 
-        // Afficher la entry modale
         stage.setScene(new Scene(root, 300, 200));
     }
 
@@ -55,7 +53,6 @@ public class DeletePopUp {
         String enteredPassword = passwordField.getText();
         if (BCrypt.checkpw(enteredPassword, currentUser.getPassword())) {
             try {
-                // Mettre à jour le statut du compte de l'utilisateur à "inactif"
                 currentUser.setStatut("Inactif");
                 serviceUsers.updateOne(currentUser);
 
@@ -89,7 +86,6 @@ public class DeletePopUp {
             loginStage.setScene(new Scene(root));
             loginStage.show();
 
-            // Fermer la fenêtre actuelle (suppression de compte)
             Stage currentStage = (Stage) passwordField.getScene().getWindow();
             currentStage.close();
         } catch (IOException ex) {

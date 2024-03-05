@@ -56,7 +56,7 @@ public class MenuAdmin {
             // Passer l'utilisateur au contrôleur SignUpBank
             SignUpBank signController = loader.getController();
             // On suppose que getCurrentUser() est une méthode publique statique
-            signController.setCurrentUser(LoginFXML.getCurrentUser()); // Utilisez le getter ici
+            signController.setCurrentUser(LoginFXML.getCurrentUser());
 
             Scene afficherBanqueScene = new Scene(afficherBanqueView);
             Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
